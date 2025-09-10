@@ -6,8 +6,7 @@ import API_URL from "../data/apiPath";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ loading state
-
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -21,15 +20,15 @@ const Login = () => {
       );
 
       const data = response.data;
-      alert("Login Success ✅");
+      alert("Login Success ");
       localStorage.setItem("token", data.token);
       navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
       if (error.response && error.response.data) {
-        alert(error.response.data.message || "Invalid credentials ❌");
+        alert(error.response.data.message || "Invalid credentials ");
       } else {
-        alert("Something went wrong ❌");
+        alert("Something went wrong ");
       }
     } finally {
       setLoading(false); // stop loading
@@ -115,7 +114,6 @@ const Login = () => {
           )}
         </button>
 
-        {/* Register link */}
         <p className="text-sm text-center mt-4">
           Didn’t Register?{" "}
           <Link to="/register" className="text-blue-600 hover:underline">
