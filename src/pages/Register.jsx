@@ -6,7 +6,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ Loading state
+  const [loading, setLoading] = useState(false); 
 
   const navigate = useNavigate();
 
@@ -26,16 +26,16 @@ const Register = () => {
 
       if (response.ok) {
         console.log(data);
-        alert("Teacher Registered Successfully ✅");
+        alert("Teacher Registered Successfully ");
         navigate("/login"); // redirect to login after success
       } else {
-        alert(data.message || "Registration failed ❌");
+        alert(data.message || "Registration failed ");
       }
     } catch (error) {
       console.error("Registration failed", error);
-      alert("Something went wrong ❌");
+      alert("Something went wrong ");
     } finally {
-      setLoading(false); // stop loading
+      setLoading(false); 
     }
   };
 
