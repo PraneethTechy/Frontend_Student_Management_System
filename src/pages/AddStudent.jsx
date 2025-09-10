@@ -8,11 +8,11 @@ const AddStudent = () => {
   const [classId, setClassId] = useState("");
   const [classes, setClasses] = useState([]);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ Loading state
+  const [loading, setLoading] = useState(false); 
 
   const token = localStorage.getItem("token");
 
-  // Fetch classes to populate the class dropdown
+ 
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -30,7 +30,7 @@ const AddStudent = () => {
 
   const handleAddStudent = async () => {
     if (!name.trim() || !rollno.trim() || !classId) {
-      setMessage("⚠️ Please fill all fields");
+      setMessage(" Please fill all fields");
       return;
     }
 
@@ -44,14 +44,14 @@ const AddStudent = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      setMessage("✅ Student added successfully!");
+      setMessage(" Student added successfully!");
       setName("");
       setRollno("");
       setClassId("");
     } catch (error) {
       console.error(error.response?.data || error.message);
       setMessage(
-        error.response?.data?.message || "❌ Failed to add student. Please try again."
+        error.response?.data?.message || " Failed to add student. Please try again."
       );
     } finally {
       setLoading(false); // stop loading
@@ -63,7 +63,6 @@ const AddStudent = () => {
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-teal-700">Add Student</h2>
 
-        {/* Name */}
         <input
           type="text"
           placeholder="Enter student name"
@@ -73,7 +72,6 @@ const AddStudent = () => {
           disabled={loading}
         />
 
-        {/* Roll Number */}
         <input
           type="text"
           placeholder="Enter roll number"
@@ -83,7 +81,6 @@ const AddStudent = () => {
           disabled={loading}
         />
 
-        {/* Class Selection */}
         <select
           value={classId}
           onChange={(e) => setClassId(e.target.value)}
@@ -98,7 +95,6 @@ const AddStudent = () => {
           ))}
         </select>
 
-        {/* Submit Button */}
         <button
           onClick={handleAddStudent}
           disabled={loading}
