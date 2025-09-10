@@ -55,7 +55,6 @@ const App = () => {
           }
         />
 
-        {/* Protected Edit Students route */}
         <Route
           path="/students/edit/:id"
           element={
@@ -65,7 +64,6 @@ const App = () => {
           }
         />
 
-        {/* Public routes */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
