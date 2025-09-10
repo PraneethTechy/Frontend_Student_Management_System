@@ -9,13 +9,13 @@ const ViewStudents = () => {
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(true);
   const [selectedClass, setSelectedClass] = useState("all");
   const token = localStorage.getItem("token");
 
   // Fetch students
   const fetchStudents = async (classId = "all") => {
     try {
+      setLoading(true);
       let url = `${API_URL}/student/my-students`;
       if (classId !== "all") url += `?classId=${classId}`;
 
@@ -26,6 +26,8 @@ const ViewStudents = () => {
     } catch (error) {
       console.error("Failed to fetch students:", error);
       setStudents([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,21 +47,17 @@ const ViewStudents = () => {
   // Initialize on mount
   useEffect(() => {
     const initialize = async () => {
-      setInitialLoad(true);
       await fetchClasses();
       await fetchStudents();
-      setInitialLoad(false);
     };
     initialize();
   }, [token]);
 
   // Class filter change
-  const handleFilterChange = async (e) => {
+  const handleFilterChange = (e) => {
     const classId = e.target.value;
     setSelectedClass(classId);
-    setLoading(true);
-    await fetchStudents(classId);
-    setLoading(false);
+    fetchStudents(classId);
   };
 
   // Delete student
@@ -101,49 +99,50 @@ const ViewStudents = () => {
       </div>
 
       {/* Students Grid */}
-      {students.length === 0 ? (
-        <p className="text-white text-lg">No students found.</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative">
-          {students.map((student) => (
-            <div
-              key={student._id}
-              className="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition"
-            >
-              <h3 className="text-xl font-semibold text-teal-700">
-                {student.name}
-              </h3>
-              <p className="text-gray-600 mt-2">Roll No: {student.rollno}</p>
-              <p className="text-gray-600 mt-1">
-                Class: {student.class?.name || "N/A"}
-              </p>
+      <div className="relative">
+        {loading && (
+          <div className="absolute inset-0 flex justify-center items-center rounded-lg text-white bg-white/50 z-10">
+            <p className="text-teal-700 font-semibold text-lg">Loading...</p>
+          </div>
+        )}
 
-              {/* Action buttons */}
-              <div className="mt-4 flex justify-between">
-                <Link
-                  to={`/students/edit/${student._id}`}
-                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Edit
-                </Link>
-                <button
-                  onClick={() => handleDelete(student._id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
+        {students.length === 0 && !loading ? (
+          <p className="text-white text-lg">No students found.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {students.map((student) => (
+              <div
+                key={student._id}
+                className="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition"
+              >
+                <h3 className="text-xl font-semibold text-teal-700">
+                  {student.name}
+                </h3>
+                <p className="text-gray-600 mt-2">Roll No: {student.rollno}</p>
+                <p className="text-gray-600 mt-1">
+                  Class: {student.class?.name || "N/A"}
+                </p>
+
+                {/* Action buttons */}
+                <div className="mt-4 flex justify-between">
+                  <Link
+                    to={`/students/edit/${student._id}`}
+                    className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(student._id)}
+                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-
-          {/* Loading overlay */}
-          {loading && (
-            <div className="absolute inset-0 flex justify-center items-center rounded-lg text-white bg-white/50">
-              <p className="text-teal-700 font-semibold">Loading...</p>
-            </div>
-          )}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
