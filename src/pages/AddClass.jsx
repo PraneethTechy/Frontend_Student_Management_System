@@ -5,7 +5,7 @@ import API_URL from "../data/apiPath";
 const AddClass = () => {
   const [className, setClassName] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // ✅ New state
+  const [loading, setLoading] = useState(false); 
 
   const handleCreateClass = async () => {
     if (!className.trim()) {
@@ -16,7 +16,7 @@ const AddClass = () => {
     const token = localStorage.getItem("token");
 
     try {
-      setLoading(true); // ✅ Start loading
+      setLoading(true); 
       setMessage("");
 
       const response = await axios.post(
@@ -29,13 +29,13 @@ const AddClass = () => {
         }
       );
 
-      setMessage("✅ Class created successfully!");
+      setMessage(" Class created successfully!");
       setClassName("");
     } catch (error) {
       console.error(error);
-      setMessage("❌ Failed to create class. Please try again.");
+      setMessage(" Failed to create class. Please try again.");
     } finally {
-      setLoading(false); // ✅ Stop loading
+      setLoading(false); 
     }
   };
 
