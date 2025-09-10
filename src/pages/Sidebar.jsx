@@ -11,13 +11,13 @@ const Sidebar = ({ active, setActive }) => {
     const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Home', icon: <Home size={18} /> },
+    { name: 'Overview', icon: <Home size={18} /> },
     { name: 'Take Attendance', icon: <CheckSquare size={18} /> },
     { name: 'View Attendance', icon: <ClipboardCheck size={18} /> },
     { name: 'Add Class', icon: <PlusCircle size={18} /> },
     { name: 'Add Student', icon: <UserPlus size={18} /> },
     { name: 'View Classes', icon: <List size={18} /> },
-    { name: 'View Students', icon: <Users size={18} /> },
+    { name: 'Manage Students', icon: <Users size={18} /> },
     { name: 'Manage Account', icon: <User size={18} /> },
   ];
 

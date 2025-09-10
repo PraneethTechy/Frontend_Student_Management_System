@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const renderComponent = () => {
     switch (activeComponent) {
-      case 'Home':
+      case 'Overview':
         return <Overview />;
       case 'Take Attendance':
         return <TakeAttendance />;
@@ -27,12 +27,12 @@ const Dashboard = () => {
         return <AddStudent />;
       case 'View Classes':
         return <ViewClasses />;
-      case 'View Students':
+      case 'Manage Students':
         return <ViewStudents />;
       case 'Manage Account':
         return <ManageAccount />;
       default:
-        return <Home />;
+        return <Overview />;
     }
   };
 
