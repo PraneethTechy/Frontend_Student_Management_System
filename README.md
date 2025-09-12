@@ -1,4 +1,5 @@
-
+Frontend Deployed Link : https://frontend-student-management-system-eight.vercel.app/login 
+Backend Deployed Link : https://backend-student-attendence-managment.onrender.com/ 
 ---
 
 ## ⚡ API Endpoints
