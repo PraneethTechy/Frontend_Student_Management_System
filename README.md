@@ -1,5 +1,21 @@
-Frontend Deployed Link : https://frontend-student-management-system-eight.vercel.app/login 
-Backend Deployed Link : https://backend-student-attendence-managment.onrender.com/ 
+# 🎓 Student Attendance Management System - Frontend
+
+
+
+This is the **Frontend** of the Student Attendance Management System, built with **React** and **Tailwind CSS**.  
+It provides a user-friendly interface for teachers to manage classes, students, and attendance also offers you to **create multiple classes under one teacher account**.
+
+---
+
+
+
+
+
+**Frontend Deployed Link** : https://frontend-student-management-system-eight.vercel.app/login 
+
+
+**Backend Deployed Link** : https://backend-student-attendence-managment.onrender.com/ 
+
 ---
 
 ## ⚡ API Endpoints
