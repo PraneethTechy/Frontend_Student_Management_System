@@ -1,12 +1,31 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## ⚡ API Endpoints
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🔐 Auth
+- `POST /api/auth/register` → Register teacher.  
+- `POST /api/auth/login` → Login teacher & get token.  
 
-## Expanding the ESLint configuration
+### 🏫 Classes
+- `POST /api/classes` → Create a new class.  
+- `GET /api/classes` → Get all classes of a teacher.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 👨‍🎓 Students
+- `POST /api/students` → Add a student.  
+- `GET /api/students?classId=123` → Get students by class.  
+- `PUT /api/students/:id` → Update student details.  
+- `DELETE /api/students/:id` → Remove student.  
+
+### 📋 Attendance
+- `POST /api/attendance` → Take attendance for a class.  
+- `GET /api/attendance?classId=123&date=2025-09-12` → View attendance records.  
+
+---
+
+## ⚡ Getting Started
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/your-username/backend-student-management.git
+   cd backend-student-management
